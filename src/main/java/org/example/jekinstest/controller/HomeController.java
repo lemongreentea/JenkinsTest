@@ -5,6 +5,7 @@ import org.example.jekinstest.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -18,6 +19,13 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model) {
+        List<User> users = userService.getUsers();
+        model.addAttribute("users", users);
+        return "index";
+    }
+
+    @PostMapping("/")
+    public String homes(Model model) {
         List<User> users = userService.getUsers();
         model.addAttribute("users", users);
         return "index";
